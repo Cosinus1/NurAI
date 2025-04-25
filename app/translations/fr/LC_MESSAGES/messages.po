@@ -1,0 +1,524 @@
+# French translations for NurAI.
+# Copyright (C) 2025 NurAI
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-04-25 10:00+0000\n"
+"PO-Revision-Date: 2025-04-25 10:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: app/auth/forms.py:15
+msgid "Username or Email"
+msgstr "Nom d'utilisateur ou Email"
+
+#: app/auth/forms.py:16
+msgid "Password"
+msgstr "Mot de passe"
+
+#: app/auth/forms.py:17
+msgid "Remember Me"
+msgstr "Se souvenir de moi"
+
+#: app/auth/forms.py:18
+msgid "Log In"
+msgstr "Connexion"
+
+#: app/auth/forms.py:22
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: app/auth/forms.py:28
+msgid "Email"
+msgstr "Email"
+
+#: app/auth/forms.py:34
+msgid "Confirm Password"
+msgstr "Confirmer le mot de passe"
+
+#: app/auth/forms.py:37
+msgid "Passwords must match"
+msgstr "Les mots de passe doivent correspondre"
+
+#: app/auth/forms.py:38
+msgid "Register"
+msgstr "S'inscrire"
+
+#: app/auth/forms.py:44
+msgid "Username already in use. Please choose a different one."
+msgstr "Nom d'utilisateur déjà utilisé. Veuillez en choisir un autre."
+
+#: app/auth/forms.py:49
+msgid "Email already registered. Please use a different one."
+msgstr "Email déjà enregistré. Veuillez en utiliser un autre."
+
+#: app/auth/forms.py:54
+msgid "First Name"
+msgstr "Prénom"
+
+#: app/auth/forms.py:55
+msgid "Last Name"
+msgstr "Nom"
+
+#: app/auth/forms.py:57
+msgid "Date of Birth"
+msgstr "Date de naissance"
+
+#: app/auth/forms.py:58
+msgid "Gender"
+msgstr "Genre"
+
+#: app/auth/forms.py:60
+msgid "Select..."
+msgstr "Sélectionner..."
+
+#: app/auth/forms.py:61
+msgid "Male"
+msgstr "Homme"
+
+#: app/auth/forms.py:62
+msgid "Female"
+msgstr "Femme"
+
+#: app/auth/forms.py:63
+msgid "Non-binary"
+msgstr "Non-binaire"
+
+#: app/auth/forms.py:64
+msgid "Other"
+msgstr "Autre"
+
+#: app/auth/forms.py:65
+msgid "Prefer not to say"
+msgstr "Préfère ne pas répondre"
+
+#: app/auth/forms.py:67
+msgid "Height (cm)"
+msgstr "Taille (cm)"
+
+#: app/auth/forms.py:68
+msgid "Weight (kg)"
+msgstr "Poids (kg)"
+
+#: app/auth/forms.py:69
+msgid "Language Preference"
+msgstr "Préférence de langue"
+
+#: app/auth/forms.py:71
+msgid "English"
+msgstr "Anglais"
+
+#: app/auth/forms.py:72
+msgid "French"
+msgstr "Français"
+
+#: app/auth/forms.py:74
+msgid "Update Profile"
+msgstr "Mettre à jour le profil"
+
+#: app/auth/forms.py:78
+msgid "Current Password"
+msgstr "Mot de passe actuel"
+
+#: app/auth/forms.py:79
+msgid "New Password"
+msgstr "Nouveau mot de passe"
+
+#: app/auth/forms.py:84
+msgid "Confirm New Password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: app/auth/forms.py:88
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+#: app/auth/forms.py:92
+msgid "Request Password Reset"
+msgstr "Demander la réinitialisation du mot de passe"
+
+#: app/auth/forms.py:99
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
+
+#: app/auth/routes.py:52
+msgid "Registration successful! You can now log in."
+msgstr "Inscription réussie! Vous pouvez maintenant vous connecter."
+
+#: app/auth/routes.py:77
+msgid "Invalid username or password"
+msgstr "Nom d'utilisateur ou mot de passe invalide"
+
+#: app/auth/routes.py:104
+msgid "You have been logged out."
+msgstr "Vous avez été déconnecté."
+
+#: app/auth/routes.py:129
+msgid "Email already in use. Please choose a different one."
+msgstr "Email déjà utilisé. Veuillez en choisir un autre."
+
+#: app/auth/routes.py:146
+msgid "Your profile has been updated."
+msgstr "Votre profil a été mis à jour."
+
+#: app/auth/routes.py:162
+msgid "Current password is incorrect."
+msgstr "Le mot de passe actuel est incorrect."
+
+#: app/auth/routes.py:167
+msgid "Your password has been updated."
+msgstr "Votre mot de passe a été mis à jour."
+
+#: app/auth/routes.py:183
+msgid "Password reset instructions have been sent to your email."
+msgstr "Les instructions de réinitialisation du mot de passe ont été envoyées à votre email."
+
+#: app/auth/routes.py:186
+msgid "No account found with that email address."
+msgstr "Aucun compte trouvé avec cette adresse email."
+
+#: app/auth/routes.py:201
+msgid "Your password has been reset. You can now log in."
+msgstr "Votre mot de passe a été réinitialisé. Vous pouvez maintenant vous connecter."
+
+#: app/core/routes.py:96
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: app/templates/base.html:73
+msgid "Mental Wellness"
+msgstr "Bien-être mental"
+
+#: app/templates/base.html:76
+msgid "Overview"
+msgstr "Aperçu"
+
+#: app/templates/base.html:77
+msgid "Track Mood"
+msgstr "Suivre l'humeur"
+
+#: app/templates/base.html:78
+msgid "Journal"
+msgstr "Journal"
+
+#: app/templates/base.html:79
+msgid "Therapy Sessions"
+msgstr "Séances de thérapie"
+
+#: app/templates/base.html:80
+msgid "History"
+msgstr "Historique"
+
+#: app/templates/base.html:85
+msgid "Health"
+msgstr "Santé"
+
+#: app/templates/base.html:88
+msgid "Track Health"
+msgstr "Suivre la santé"
+
+#: app/templates/base.html:89
+msgid "Medications"
+msgstr "Médicaments"
+
+#: app/templates/base.html:96
+msgid "Fitness"
+msgstr "Forme physique"
+
+#: app/templates/base.html:99
+msgid "Track Activity"
+msgstr "Suivre l'activité"
+
+#: app/templates/base.html:100
+msgid "Workout Session"
+msgstr "Séance d'entraînement"
+
+#: app/templates/base.html:101
+msgid "Workout Plan"
+msgstr "Plan d'entraînement"
+
+#: app/templates/base.html:102
+msgid "Analytics"
+msgstr "Analyses"
+
+#: app/templates/base.html:140
+msgid "Profile"
+msgstr "Profil"
+
+#: app/templates/base.html:146
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: app/templates/base.html:151
+msgid "Login"
+msgstr "Connexion"
+
+#: app/templates/base.html:187
+msgid "Mental Wellness, Fitness and Health Tracking"
+msgstr "Suivi du bien-être mental, de la forme physique et de la santé"
+
+#: app/templates/base.html:190
+msgid "About"
+msgstr "À propos"
+
+#: app/templates/base.html:191
+msgid "Privacy"
+msgstr "Confidentialité"
+
+#: app/templates/base.html:192
+msgid "Terms"
+msgstr "Conditions"
+
+#: app/templates/base.html:193
+msgid "Help"
+msgstr "Aide"
+
+#: app/templates/index.html:6
+msgid "Take control of your well-being with NurAI"
+msgstr "Prenez le contrôle de votre bien-être avec NurAI"
+
+#: app/templates/index.html:7
+msgid "A comprehensive platform for tracking your mental wellness, physical fitness, and overall health in one place."
+msgstr "Une plateforme complète pour suivre votre bien-être mental, votre forme physique et votre santé générale en un seul endroit."
+
+#: app/templates/index.html:9
+msgid "Get Started"
+msgstr "Commencer"
+
+#: app/templates/index.html:10
+msgid "Learn More"
+msgstr "En savoir plus"
+
+#: app/templates/index.html:22
+msgid "Why Choose NurAI?"
+msgstr "Pourquoi choisir NurAI?"
+
+#: app/templates/index.html:30
+msgid "Track your mood, anxiety levels, and emotional well-being. Document therapy sessions and practice mindfulness."
+msgstr "Suivez votre humeur, vos niveaux d'anxiété et votre bien-être émotionnel. Documentez les séances de thérapie et pratiquez la pleine conscience."
+
+#: app/templates/index.html:38
+msgid "Health Monitoring"
+msgstr "Surveillance de la santé"
+
+#: app/templates/index.html:39
+msgid "Record vital signs, sleep patterns, and lifestyle habits. Keep track of medications and symptoms."
+msgstr "Enregistrez les signes vitaux, les habitudes de sommeil et les habitudes de vie. Suivez les médicaments et les symptômes."
+
+#: app/templates/index.html:47
+msgid "Fitness Tracking"
+msgstr "Suivi de la condition physique"
+
+#: app/templates/index.html:48
+msgid "Log workouts, create training plans, and track your physical progress. Monitor calories, steps, and exercise metrics."
+msgstr "Enregistrez vos entraînements, créez des plans d'entraînement et suivez vos progrès physiques. Surveillez les calories, les pas et les métriques d'exercice."
+
+#: app/templates/index.html:58
+msgid "Key Features"
+msgstr "Fonctionnalités clés"
+
+#: app/templates/index.html:67
+msgid "Comprehensive Analytics"
+msgstr "Analyses complètes"
+
+#: app/templates/index.html:68
+msgid "Visualize your progress with intuitive charts and analytics."
+msgstr "Visualisez vos progrès avec des graphiques et des analyses intuitifs."
+
+#: app/templates/index.html:77
+msgid "Privacy Focused"
+msgstr "Axé sur la confidentialité"
+
+#: app/templates/index.html:78
+msgid "Your health data remains private and secure."
+msgstr "Vos données de santé restent privées et sécurisées."
+
+#: app/templates/index.html:87
+msgid "Multilingual"
+msgstr "Multilingue"
+
+#: app/templates/index.html:88
+msgid "Available in both English and French languages."
+msgstr "Disponible en anglais et en français."
+
+#: app/templates/index.html:97
+msgid "Responsive Design"
+msgstr "Design réactif"
+
+#: app/templates/index.html:98
+msgid "Access on any device - desktop, tablet, or mobile."
+msgstr "Accédez depuis n'importe quel appareil - ordinateur, tablette ou mobile."
+
+#: app/templates/index.html:106
+msgid "Ready to start your wellness journey?"
+msgstr "Prêt à commencer votre parcours de bien-être?"
+
+#: app/templates/index.html:107
+msgid "Sign Up Now"
+msgstr "Inscrivez-vous maintenant"
+
+#: app/templates/dashboard.html:6
+msgid "Welcome back, "
+msgstr "Bienvenue, "
+
+#: app/templates/dashboard.html:7
+msgid "Here's your health and wellness overview."
+msgstr "Voici un aperçu de votre santé et de votre bien-être."
+
+#: app/templates/dashboard.html:16
+msgid "Current Mood"
+msgstr "Humeur actuelle"
+
+#: app/templates/dashboard.html:30
+msgid "Mood rating"
+msgstr "Évaluation de l'humeur"
+
+#: app/templates/dashboard.html:38
+msgid "No recent mood data"
+msgstr "Aucune donnée d'humeur récente"
+
+#: app/templates/dashboard.html:60
+msgid "BP"
+msgstr "TA"
+
+#: app/templates/dashboard.html:63
+msgid "Sleep"
+msgstr "Sommeil"
+
+#: app/templates/dashboard.html:71
+msgid "No recent health data"
+msgstr "Aucune donnée de santé récente"
+
+#: app/templates/dashboard.html:87
+msgid "Steps"
+msgstr "Pas"
+
+#: app/templates/dashboard.html:90
+msgid "Activity"
+msgstr "Activité"
+
+#: app/templates/dashboard.html:98
+msgid "No recent fitness data"
+msgstr "Aucune donnée de fitness récente"
+
+#: app/templates/dashboard.html:113
+msgid "days"
+msgstr "jours"
+
+#: app/templates/dashboard.html:114
+msgid "Keep tracking daily!"
+msgstr "Continuez à suivre quotidiennement!"
+
+#: app/templates/dashboard.html:126
+msgid "Quick Add"
+msgstr "Ajout rapide"
+
+#: app/templates/dashboard.html:136
+msgid "Journal Entry"
+msgstr "Entrée de journal"
+
+#: app/templates/dashboard.html:142
+msgid "Log Workout"
+msgstr "Enregistrer l'entraînement"
+
+#: app/templates/dashboard.html:156
+msgid "Mood Trends"
+msgstr "Tendances d'humeur"
+
+#: app/templates/dashboard.html:157 app/templates/dashboard.html:169
+msgid "View All"
+msgstr "Voir tout"
+
+#: app/templates/dashboard.html:168
+msgid "Activity Summary"
+msgstr "Résumé de l'activité"
+
+#: app/templates/dashboard.html:183
+msgid "Recent Entries"
+msgstr "Entrées récentes"
+
+#: app/templates/dashboard.html:190
+msgid "Mental Wellness Entry"
+msgstr "Entrée de bien-être mental"
+
+#: app/templates/dashboard.html:200
+msgid "Health Survey Entry"
+msgstr "Entrée de l'enquête de santé"
+
+#: app/templates/dashboard.html:213
+msgid "Fitness Entry"
+msgstr "Entrée de fitness"
+
+#: app/templates/dashboard.html:226
+msgid "No recent entries. Start tracking your health and wellness!"
+msgstr "Aucune entrée récente. Commencez à suivre votre santé et votre bien-être!"
+
+#: app/templates/dashboard.html:243
+msgid "Mood Rating"
+msgstr "Évaluation de l'humeur"
+
+#: app/templates/dashboard.html:249
+msgid "Anxiety Level"
+msgstr "Niveau d'anxiété"
+
+#: app/templates/dashboard.html:262
+msgid "Minutes"
+msgstr "Minutes"
+
+#: app/templates/dashboard.html:274
+msgid "Active Minutes"
+msgstr "Minutes actives"
+
+#: app/templates/auth/login.html:8
+msgid "Login to NurAI"
+msgstr "Connexion à NurAI"
+
+#: app/templates/auth/login.html:16
+msgid "Enter username or email"
+msgstr "Entrez votre nom d'utilisateur ou email"
+
+#: app/templates/auth/login.html:24
+msgid "Enter password"
+msgstr "Entrez votre mot de passe"
+
+#: app/templates/auth/login.html:41
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié?"
+
+#: app/templates/auth/login.html:45
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte?"
+
+#: app/templates/auth/register.html:8
+msgid "Create an Account"
+msgstr "Créer un compte"
+
+#: app/templates/auth/register.html:16
+msgid "Choose a username"
+msgstr "Choisissez un nom d'utilisateur"
+
+#: app/templates/auth/register.html:24
+msgid "Enter your email"
+msgstr "Entrez votre email"
+
+#: app/templates/auth/register.html:32
+msgid "Create a password"
+msgstr "Créez un mot de passe"
+
+#: app/templates/auth/register.html:33
+msgid "Must be at least 8 characters long"
+msgstr "Doit comporter au moins 8 caractères"
+
+#: app/templates/auth/register.html:40
+msgid "Confirm your password"
+msgstr "Confirmer votre mot de passe"
+
+#: app/templates/auth/register.html:52
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte?"

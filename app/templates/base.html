@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="{{ g.lang_code }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} | {% endif %}NurAI</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('core.index') }}">
+                <i class="fas fa-heartbeat me-2"></i>NurAI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('core.dashboard') }}">
+                            <li><a class="dropdown-item" href="{{ url_for('mental.index') }}">{{ _('Overview') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('mental.track') }}">{{ _('Track Mood') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('mental.journal') }}">{{ _('Journal') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('mental.therapy') }}">{{ _('Therapy Sessions') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('mental.history') }}">{{ _('History') }}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-heartbeat me-1"></i>{{ _('Health') }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url_for('health.index') }}">{{ _('Overview') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('health.track') }}">{{ _('Track Health') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('health.medications') }}">{{ _('Medications') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('health.history') }}">{{ _('History') }}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-dumbbell me-1"></i>{{ _('Fitness') }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url_for('fitness.index') }}">{{ _('Overview') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('fitness.track') }}">{{ _('Track Activity') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('fitness.workout_session') }}">{{ _('Workout Session') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('fitness.workout_plan') }}">{{ _('Workout Plan') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('fitness.analytics') }}">{{ _('Analytics') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('fitness.history') }}">{{ _('History') }}</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+                
+                <ul class="navbar-nav ms-auto">
+                    <!-- Language Switcher -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe me-1"></i>
+                            {% if session.get('language') == 'fr' %}
+                                {{ _('French') }}
+                            {% else %}
+                                {{ _('English') }}
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ url_for('core.set_language', language='en', next=request.path) }}">{{ _('English') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('core.set_language', language='fr', next=request.path) }}">{{ _('French') }}</a></li>
+                        </ul>
+                    </li>
+                    
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i>{{ current_user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ url_for('auth.profile') }}">{{ _('Profile') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('auth.change_password') }}">{{ _('Change Password') }}</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">
+                            <i class="fas fa-sign-in-alt me-1"></i>{{ _('Login') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.register') }}">
+                            <i class="fas fa-user-plus me-1"></i>{{ _('Register') }}
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container my-4">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Page Content -->
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 NurAI - {{ _('Mental Wellness, Fitness and Health Tracking') }}</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="{{ url_for('core.about') }}" class="text-decoration-none text-muted me-3">{{ _('About') }}</a>
+                    <a href="{{ url_for('core.privacy') }}" class="text-decoration-none text-muted me-3">{{ _('Privacy') }}</a>
+                    <a href="{{ url_for('core.terms') }}" class="text-decoration-none text-muted me-3">{{ _('Terms') }}</a>
+                    <a href="{{ url_for('core.help') }}" class="text-decoration-none text-muted">{{ _('Help') }}</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html><i class="fas fa-tachometer-alt me-1"></i>{{ _('Dashboard') }}
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-brain me-1"></i>{{ _('Mental Wellness') }}
+                        </a>
+                        <ul class="dropdown-menu">

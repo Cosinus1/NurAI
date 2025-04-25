@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>{{ _('Welcome back, ') }}{{ current_user.first_name or current_user.username }}!</h1>
+        <p class="lead">{{ _('Here\'s your health and wellness overview.') }}</p>
+    </div>
+</div>
+
+<!-- Key Metrics Section -->
+<div class="row g-4 mb-5">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ _('Current Mood') }}</h5>
+                {% if recent_mental and recent_mental.mood_rating %}
+                    <div class="display-1 mb-2">
+                        {% if recent_mental.mood_rating >= 8 %}
+                            <i class="far fa-laugh-beam"></i>
+                        {% elif recent_mental.mood_rating >= 6 %}
+                            <i class="far fa-smile"></i>
+                        {% elif recent_mental.mood_rating >= 4 %}
+                            <i class="far fa-meh"></i>
+                        {% elif recent_mental.mood_rating >= 2 %}
+                            <i class="far fa-frown"></i>
+                        {% else %}
+                            <i class="far fa-sad-tear"></i>
+                        {% endif %}
+                    </div>
+                    <p class="mb-0">{{ _('Mood rating') }}: {{ recent_mental.mood_rating }}/10</p>
+                    <small>{{ recent_mental.date.strftime('%Y-%m-%d') }}</small>
+                {% else %}
+                    <div class="display-1 mb-2">
+                        <i class="far fa-question-circle"></i>
+                    </div>
+                    <p>{{ _('No recent mood data') }}</p>
+                    <a href="{{ url_for('mental.track') }}" class="btn btn-light btn-sm mt-2">{{ _('Track Mood') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-danger text-white h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ _('Health') }}</h5>
+                {% if recent_health %}
+                    <div class="display-1 mb-2">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    {% if recent_health.blood_pressure_systolic and recent_health.blood_pressure_diastolic %}
+                        <p class="mb-0">{{ _('BP') }}: {{ recent_health.blood_pressure_systolic }}/{{ recent_health.blood_pressure_diastolic }}</p>
+                    {% endif %}
+                    {% if recent_health.sleep_duration %}
+                        <p class="mb-0">{{ _('Sleep') }}: {{ recent_health.sleep_duration }}h</p>
+                    {% endif %}
+                    <small>{{ recent_health.date.strftime('%Y-%m-%d') }}</small>
+                {% else %}
+                    <div class="display-1 mb-2">
+                        <i class="far fa-question-circle"></i>
+                    </div>
+                    <p>{{ _('No recent health data') }}</p>
+                    <a href="{{ url_for('health.track') }}" class="btn btn-light btn-sm mt-2">{{ _('Track Health') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-success text-white h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ _('Fitness') }}</h5>
+                {% if recent_fitness %}
+                    <div class="display-1 mb-2">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    {% if recent_fitness.steps %}
+                        <p class="mb-0">{{ _('Steps') }}: {{ recent_fitness.steps }}</p>
+                    {% endif %}
+                    {% if recent_fitness.workout_type %}
+                        <p class="mb-0">{{ _('Activity') }}: {{ recent_fitness.workout_type }}</p>
+                    {% endif %}
+                    <small>{{ recent_fitness.date.strftime('%Y-%m-%d') }}</small>
+                {% else %}
+                    <div class="display-1 mb-2">
+                        <i class="far fa-question-circle"></i>
+                    </div>
+                    <p>{{ _('No recent fitness data') }}</p>
+                    <a href="{{ url_for('fitness.track') }}" class="btn btn-light btn-sm mt-2">{{ _('Track Fitness') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-info text-white h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ _('Streak') }}</h5>
+                <div class="display-1 mb-2">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3 class="mb-0">3 {{ _('days') }}</h3>
+                <p>{{ _('Keep tracking daily!') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Add Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4 class="mb-0">{{ _('Quick Add') }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ url_for('mental.track') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-brain me-1"></i> {{ _('Track Mood') }}
+                    </a>
+                    <a href="{{ url_for('mental.journal') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-book me-1"></i> {{ _('Journal Entry') }}
+                    </a>
+                    <a href="{{ url_for('health.track') }}" class="btn btn-outline-danger">
+                        <i class="fas fa-heartbeat me-1"></i> {{ _('Track Health') }}
+                    </a>
+                    <a href="{{ url_for('fitness.track') }}" class="btn btn-outline-success">
+                        <i class="fas fa-running me-1"></i> {{ _('Track Activity') }}
+                    </a>
+                    <a href="{{ url_for('fitness.workout_session') }}" class="btn btn-outline-success">
+                        <i class="fas fa-dumbbell me-1"></i> {{ _('Log Workout') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Section -->
+<div class="row g-4 mb-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ _('Mood Trends') }}</h5>
+                <a href="{{ url_for('mental.history') }}" class="btn btn-sm btn-outline-primary">{{ _('View All') }}</a>
+            </div>
+            <div class="card-body">
+                <canvas id="moodChart" width="400" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ _('Activity Summary') }}</h5>
+                <a href="{{ url_for('fitness.history') }}" class="btn btn-sm btn-outline-success">{{ _('View All') }}</a>
+            </div>
+            <div class="card-body">
+                <canvas id="activityChart" width="400" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Entries -->
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4 class="mb-0">{{ _('Recent Entries') }}</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% if recent_mental %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-brain text-primary me-2"></i>
+                            {{ _('Mental Wellness Entry') }}
+                            <span class="badge bg-primary ms-2">{{ _('Mood') }}: {{ recent_mental.mood_rating }}/10</span>
+                        </div>
+                        <small>{{ recent_mental.date.strftime('%Y-%m-%d') }}</small>
+                    </li>
+                    {% endif %}
+                    
+                    {% if recent_health %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-heartbeat text-danger me-2"></i>
+                            {{ _('Health Survey Entry') }}
+                            {% if recent_health.sleep_duration %}
+                            <span class="badge bg-danger ms-2">{{ _('Sleep') }}: {{ recent_health.sleep_duration }}h</span>
+                            {% endif %}
+                        </div>
+                        <small>{{ recent_health.date.strftime('%Y-%m-%d') }}</small>
+                    </li>
+                    {% endif %}
+                    
+                    {% if recent_fitness %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-dumbbell text-success me-2"></i>
+                            {{ _('Fitness Entry') }}
+                            {% if recent_fitness.workout_type %}
+                            <span class="badge bg-success ms-2">{{ recent_fitness.workout_type }}</span>
+                            {% endif %}
+                        </div>
+                        <small>{{ recent_fitness.date.strftime('%Y-%m-%d') }}</small>
+                    </li>
+                    {% endif %}
+                    
+                    {% if not recent_mental and not recent_health and not recent_fitness %}
+                    <li class="list-group-item text-center">
+                        <p class="mb-0">{{ _('No recent entries. Start tracking your health and wellness!') }}</p>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Mock data for Mood Chart
+    const moodCtx = document.getElementById('moodChart').getContext('2d');
+    const moodChart = new Chart(moodCtx, {
+        type: 'line',
+        data: {
+            labels: ['7 days ago', '6 days ago', '5 days ago', '4 days ago', '3 days ago', '2 days ago', 'Today'],
+            datasets: [{
+                label: '{{ _("Mood Rating") }}',
+                data: [6, 7, 5, 8, 6, 7, 8],
+                borderColor: 'rgba(13, 110, 253, 1)',
+                backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                fill: true,
+                tension: 0.3
+            }, {
+                label: '{{ _("Anxiety Level") }}',
+                data: [4, 5, 7, 3, 5, 4, 3],
+                borderColor: 'rgba(255, 193, 7, 1)',
+                backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: 0,
+                    max: 10
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+    
+    // Mock data for Activity Chart
+    const activityCtx = document.getElementById('activityChart').getContext('2d');
+    const activityChart = new Chart(activityCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: '{{ _("Minutes") }}',
+                data: [30, 45, 0, 60, 30, 90, 45],
+                backgroundColor: 'rgba(25, 135, 84, 0.7)',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '{{ _("Active Minutes") }}'
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

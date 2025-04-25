@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nurai-service
+  labels:
+    app: nurai
+spec:
+  selector:
+    app: nurai
+    tier: web
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  labels:
+    app: nurai
+    tier: db
+spec:
+  selector:
+    app: nurai
+    tier: db
+  ports:
+  - port: 5432
+    targetPort: 5432
+  type: ClusterIP

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nurai-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    # Add SSL annotations if you want HTTPS
+    # kubernetes.io/ingress.allow-http: "false"
+    # kubernetes.io/ingress.global-static-ip-name: "nurai-ip"
+spec:
+  rules:
+  - host: nurai-project.com  # Change to your domain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nurai-service
+            port:
+              number: 80

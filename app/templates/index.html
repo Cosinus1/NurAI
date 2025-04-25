@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row align-items-center g-5 py-5">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold text-primary lh-1 mb-3">{{ _('Take control of your well-being with NurAI') }}</h1>
+        <p class="lead">{{ _('A comprehensive platform for tracking your mental wellness, physical fitness, and overall health in one place.') }}</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg px-4 me-md-2">{{ _('Get Started') }}</a>
+            <a href="{{ url_for('core.about') }}" class="btn btn-outline-secondary btn-lg px-4">{{ _('Learn More') }}</a>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <img src="{{ url_for('static', filename='img/hero-img.svg') }}" class="d-block mx-lg-auto img-fluid" alt="NurAI Hero Image" loading="lazy" width="700" height="500">
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row g-4 py-5">
+    <div class="col-12 text-center mb-4">
+        <h2 class="fw-bold">{{ _('Why Choose NurAI?') }}</h2>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center py-4">
+                <i class="fas fa-brain text-primary fa-4x mb-4"></i>
+                <h3 class="card-title">{{ _('Mental Wellness') }}</h3>
+                <p class="card-text">{{ _('Track your mood, anxiety levels, and emotional well-being. Document therapy sessions and practice mindfulness.') }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center py-4">
+                <i class="fas fa-heartbeat text-danger fa-4x mb-4"></i>
+                <h3 class="card-title">{{ _('Health Monitoring') }}</h3>
+                <p class="card-text">{{ _('Record vital signs, sleep patterns, and lifestyle habits. Keep track of medications and symptoms.') }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center py-4">
+                <i class="fas fa-dumbbell text-success fa-4x mb-4"></i>
+                <h3 class="card-title">{{ _('Fitness Tracking') }}</h3>
+                <p class="card-text">{{ _('Log workouts, create training plans, and track your physical progress. Monitor calories, steps, and exercise metrics.') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row g-4 py-5">
+    <div class="col-12 text-center mb-4">
+        <h2 class="fw-bold">{{ _('Key Features') }}</h2>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <div class="bg-primary text-white rounded-circle p-2 me-3">
+                <i class="fas fa-chart-line fa-fw"></i>
+            </div>
+            <div>
+                <h4>{{ _('Comprehensive Analytics') }}</h4>
+                <p>{{ _('Visualize your progress with intuitive charts and analytics.') }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <div class="bg-primary text-white rounded-circle p-2 me-3">
+                <i class="fas fa-lock fa-fw"></i>
+            </div>
+            <div>
+                <h4>{{ _('Privacy Focused') }}</h4>
+                <p>{{ _('Your health data remains private and secure.') }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <div class="bg-primary text-white rounded-circle p-2 me-3">
+                <i class="fas fa-globe fa-fw"></i>
+            </div>
+            <div>
+                <h4>{{ _('Multilingual') }}</h4>
+                <p>{{ _('Available in both English and French languages.') }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="d-flex align-items-start">
+            <div class="bg-primary text-white rounded-circle p-2 me-3">
+                <i class="fas fa-mobile-alt fa-fw"></i>
+            </div>
+            <div>
+                <h4>{{ _('Responsive Design') }}</h4>
+                <p>{{ _('Access on any device - desktop, tablet, or mobile.') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row py-5 text-center">
+    <div class="col-12">
+        <h2 class="fw-bold mb-4">{{ _('Ready to start your wellness journey?') }}</h2>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg px-5">{{ _('Sign Up Now') }}</a>
+    </div>
+</div>
+{% endblock %}
