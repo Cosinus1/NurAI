@@ -1,4 +1,4 @@
-from flask import Flask, request, session, g
+from flask import Flask, request, session, g, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -47,7 +47,7 @@ def create_app(config_name='default'):
     app.register_blueprint(fitness_bp)
 
     # Configure language handling
-    @babel.localeselector
+    @babel.locale_selector
     def get_locale():
         # If user has set a language preference in the session
         if 'language' in session:
