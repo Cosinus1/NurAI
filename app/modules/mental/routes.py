@@ -4,8 +4,8 @@ from flask_login import login_required, current_user
 from flask_babel import gettext as _
 
 from app import db
-from app.mental.models import MentalWellness, TherapySession
-from app.mental.forms import (
+from app.modules.mental.models import MentalWellness, TherapySession
+from app.modules.mental.forms import (
     MentalWellnessForm, TherapySessionForm, MoodJournalForm,
     MentalWellnessFilterForm
 )

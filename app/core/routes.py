@@ -3,9 +3,9 @@ from flask_login import login_required, current_user
 from flask_babel import gettext as _
 
 from app import db
-from app.mental.models import MentalWellness
-from app.health.models import HealthSurvey
-from app.fitness.models import FitnessMetric
+from app.modules.mental.models import MentalWellness
+from app.modules.health.models import HealthSurvey
+from app.modules.fitness.models import FitnessMetric
 
 # Create blueprint
 core_bp = Blueprint('core', __name__)

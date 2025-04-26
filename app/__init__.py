@@ -37,13 +37,13 @@ def create_app(config_name='default'):
     from app.core.routes import core_bp
     app.register_blueprint(core_bp)
 
-    from app.health.routes import health_bp
+    from app.modules.health.routes import health_bp
     app.register_blueprint(health_bp)
 
-    from app.mental.routes import mental_bp
+    from app.modules.mental.routes import mental_bp
     app.register_blueprint(mental_bp)
 
-    from app.fitness.routes import fitness_bp
+    from app.modules.fitness.routes import fitness_bp
     app.register_blueprint(fitness_bp)
 
     # Configure language handling
@@ -74,6 +74,6 @@ def create_app(config_name='default'):
 
 # Import models to ensure they are registered with SQLAlchemy
 from app.auth.models import User
-from app.health.models import HealthSurvey
-from app.mental.models import MentalWellness
-from app.fitness.models import FitnessMetric
+from app.modules.health.models import HealthSurvey
+from app.modules.mental.models import MentalWellness
+from app.modules.fitness.models import FitnessMetric

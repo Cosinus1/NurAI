@@ -4,8 +4,8 @@ from flask_login import login_required, current_user
 from flask_babel import gettext as _
 
 from app import db
-from app.health.models import HealthSurvey
-from app.health.forms import HealthSurveyForm, HealthSurveyFilterForm, MedicationForm
+from app.modules.health.models import HealthSurvey
+from app.modules.health.forms import HealthSurveyForm, HealthSurveyFilterForm, MedicationForm
 
 # Create blueprint
 health_bp = Blueprint('health', __name__, url_prefix='/health')

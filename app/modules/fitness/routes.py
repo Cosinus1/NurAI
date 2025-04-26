@@ -4,8 +4,8 @@ from flask_login import login_required, current_user
 from flask_babel import gettext as _
 
 from app import db
-from app.fitness.models import FitnessMetric, WorkoutPlan, PlannedWorkout, Exercise
-from app.fitness.forms import (
+from app.modules.fitness.models import FitnessMetric, WorkoutPlan, PlannedWorkout, Exercise
+from app.modules.fitness.forms import (
     FitnessMetricForm, WorkoutSessionForm, WorkoutPlanForm, FitnessFilterForm
 )
 
@@ -41,6 +41,97 @@ def index():
     workout_plan = WorkoutPlan.query.filter_by(user_id=current_user.id).first()
     
     return render_template('fitness/index.html',
+                           title=_('Fitness Tracking'),
+                           recent_entries=recent_entries,
+                           weekly_stats=weekly_stats,
+                           workout_plan=workout_plan)
+
+@fitness_bp.route('/track', methods=['GET', 'POST'])
+@login_required
+def track():
+    """Form to track fitness metrics."""
+    form = FitnessMetricForm()
+    
+    # Set default date to today
+    if request.method == 'GET':
+        form.date.data = datetime.utcnow().date()
+    
+    if form.validate_on_submit():
+        # Check if an entry for this date already exists
+        existing_entry = FitnessMetric.query.filter_by(
+            user_id=current_user.id,
+            date=form.date.data
+        ).first()
+        
+        if existing_entry:
+            # Update existing entry
+            existing_entry.steps = form.steps.data
+            existing_entry.distance = form.distance.data
+            existing_entry.active_minutes = form.active_minutes.data
+            existing_entry.calories_burned = form.calories_burned.data
+            existing_entry.workout_type = form.workout_type.data
+            existing_entry.workout_duration = form.workout_duration.data
+            existing_entry.workout_intensity = form.workout_intensity.data
+            existing_entry.heart_rate_avg = form.heart_rate_avg.data
+            existing_entry.heart_rate_max = form.heart_rate_max.data
+            existing_entry.recovery_score = form.recovery_score.data
+            existing_entry.soreness_level = form.soreness_level.data
+            existing_entry.workout_notes = form.workout_notes.data
+            
+            flash(_('Fitness entry updated for the selected date.'), 'success')
+        else:
+            # Create new entry
+            entry = FitnessMetric(
+                user_id=current_user.id,
+                date=form.date.data,
+                steps=form.steps.data,
+                distance=form.distance.data,
+                active_minutes=form.active_minutes.data,
+                calories_burned=form.calories_burned.data,
+                workout_type=form.workout_type.data,
+                workout_duration=form.workout_duration.data,
+                workout_intensity=form.workout_intensity.data,
+                heart_rate_avg=form.heart_rate_avg.data,
+                heart_rate_max=form.heart_rate_max.data,
+                recovery_score=form.recovery_score.data,
+                soreness_level=form.soreness_level.data,
+                workout_notes=form.workout_notes.data
+            )
+            db.session.add(entry)
+            flash(_('Fitness entry recorded.'), 'success')
+        
+        db.session.commit()
+        return redirect(url_for('fitness.index'))
+    
+    return render_template('fitness/track.html',
+                           title=_('Track Fitness Metrics'),
+                           form=form)
+
+@fitness_bp.route('/history')
+@login_required
+def history():
+    """View fitness history."""
+    filter_form = FitnessFilterForm()
+    
+    # Apply filters if provided
+    page = request.args.get('page', 1, type=int)
+    start_date = request.args.get('start_date', None)
+    end_date = request.args.get('end_date', None)
+    workout_type = request.args.get('workout_type', None)
+    
+    query = FitnessMetric.query.filter_by(user_id=current_user.id)
+    
+    if start_date:
+        query = query.filter(FitnessMetric.date >= start_date)
+    if end_date:
+        query = query.filter(FitnessMetric.date <= end_date)
+    if workout_type:
+        query = query.filter(FitnessMetric.workout_type == workout_type)
+    
+    entries = query.order_by(FitnessMetric.date.desc())\
+        .paginate(page=page, per_page=10, error_out=False)
+    
+    return render_template('fitness/history.html',
                            title=_('Fitness History'),
                            entries=entries,
                            filter_form=filter_form)
@@ -246,95 +337,4 @@ def analytics():
                            workouts_by_type=workouts_by_type,
                            current_week_minutes=current_week_minutes,
                            prev_week_minutes=prev_week_minutes,
-                           daily_activities=daily_activities) Tracking'),
-                           recent_entries=recent_entries,
-                           weekly_stats=weekly_stats,
-                           workout_plan=workout_plan)
-
-@fitness_bp.route('/track', methods=['GET', 'POST'])
-@login_required
-def track():
-    """Form to track fitness metrics."""
-    form = FitnessMetricForm()
-    
-    # Set default date to today
-    if request.method == 'GET':
-        form.date.data = datetime.utcnow().date()
-    
-    if form.validate_on_submit():
-        # Check if an entry for this date already exists
-        existing_entry = FitnessMetric.query.filter_by(
-            user_id=current_user.id,
-            date=form.date.data
-        ).first()
-        
-        if existing_entry:
-            # Update existing entry
-            existing_entry.steps = form.steps.data
-            existing_entry.distance = form.distance.data
-            existing_entry.active_minutes = form.active_minutes.data
-            existing_entry.calories_burned = form.calories_burned.data
-            existing_entry.workout_type = form.workout_type.data
-            existing_entry.workout_duration = form.workout_duration.data
-            existing_entry.workout_intensity = form.workout_intensity.data
-            existing_entry.heart_rate_avg = form.heart_rate_avg.data
-            existing_entry.heart_rate_max = form.heart_rate_max.data
-            existing_entry.recovery_score = form.recovery_score.data
-            existing_entry.soreness_level = form.soreness_level.data
-            existing_entry.workout_notes = form.workout_notes.data
-            
-            flash(_('Fitness entry updated for the selected date.'), 'success')
-        else:
-            # Create new entry
-            entry = FitnessMetric(
-                user_id=current_user.id,
-                date=form.date.data,
-                steps=form.steps.data,
-                distance=form.distance.data,
-                active_minutes=form.active_minutes.data,
-                calories_burned=form.calories_burned.data,
-                workout_type=form.workout_type.data,
-                workout_duration=form.workout_duration.data,
-                workout_intensity=form.workout_intensity.data,
-                heart_rate_avg=form.heart_rate_avg.data,
-                heart_rate_max=form.heart_rate_max.data,
-                recovery_score=form.recovery_score.data,
-                soreness_level=form.soreness_level.data,
-                workout_notes=form.workout_notes.data
-            )
-            db.session.add(entry)
-            flash(_('Fitness entry recorded.'), 'success')
-        
-        db.session.commit()
-        return redirect(url_for('fitness.index'))
-    
-    return render_template('fitness/track.html',
-                           title=_('Track Fitness Metrics'),
-                           form=form)
-
-@fitness_bp.route('/history')
-@login_required
-def history():
-    """View fitness history."""
-    filter_form = FitnessFilterForm()
-    
-    # Apply filters if provided
-    page = request.args.get('page', 1, type=int)
-    start_date = request.args.get('start_date', None)
-    end_date = request.args.get('end_date', None)
-    workout_type = request.args.get('workout_type', None)
-    
-    query = FitnessMetric.query.filter_by(user_id=current_user.id)
-    
-    if start_date:
-        query = query.filter(FitnessMetric.date >= start_date)
-    if end_date:
-        query = query.filter(FitnessMetric.date <= end_date)
-    if workout_type:
-        query = query.filter(FitnessMetric.workout_type == workout_type)
-    
-    entries = query.order_by(FitnessMetric.date.desc())\
-        .paginate(page=page, per_page=10, error_out=False)
-    
-    return render_template('fitness/history.html',
-                           title=_('Fitness
+                           daily_activities=daily_activities)
